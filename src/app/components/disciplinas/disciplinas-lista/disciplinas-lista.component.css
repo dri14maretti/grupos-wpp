@@ -1,0 +1,25 @@
+.full-width-table {
+	width: 100%;
+}
+
+.mat-elevation-z4 {
+	margin-top: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#wpp-icon {
+	width: 30px;
+}
+
+.content {
+	text-align: left;
+	justify-content: center;
+}
+
+.copy {
+	margin-left: 10px;
+	font-size: 30px;
+	text-decoration: none;
+	color: #fff;
+}

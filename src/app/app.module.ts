@@ -7,13 +7,21 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { HeaderComponent } from "./components/template/header/header.component";
 import { FooterComponent } from "./components/template/footer/footer.component";
+import { DisciplinasListaComponent } from "./components/disciplinas/disciplinas-lista/disciplinas-lista.component";
 
 import { AngularFireModule } from "angularfire2";
 
 import { AngularFirestoreModule } from "angularfire2/firestore";
+import { DisciplinasLista2Component } from "./components/disciplinas/disciplinas-lista2/disciplinas-lista2.component";
 
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { DisciplinasListaComponent } from "./components/disciplinas/disciplinas-lista/disciplinas-lista.component";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { FormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -22,6 +30,7 @@ import { DisciplinasListaComponent } from "./components/disciplinas/disciplinas-
     FooterComponent,
     HeaderComponent,
     DisciplinasListaComponent,
+    DisciplinasLista2Component,
   ],
   imports: [
     AppRoutingModule,
@@ -29,6 +38,13 @@ import { DisciplinasListaComponent } from "./components/disciplinas/disciplinas-
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     MatToolbarModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

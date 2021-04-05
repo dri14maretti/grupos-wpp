@@ -1,9 +1,14 @@
 #logo-toolbar {
-  width: 200px;
-  display: flex;
-  text-align: center;
+	width: 5rem;
+	display: flex;
+	text-align: center;
 }
 
 .header {
-  background-color: aqua;
+	background-color: #3e4095;
+	height: 100px;
+}
+
+.search-form {
+	margin-left: 50px;
 }
