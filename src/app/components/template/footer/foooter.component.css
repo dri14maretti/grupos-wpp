@@ -1,0 +1,12 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fff;
+}
+
+#developed-by {
+  width: 200px;
+}

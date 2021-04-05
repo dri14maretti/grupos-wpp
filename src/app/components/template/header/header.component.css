@@ -1,0 +1,9 @@
+#logo-toolbar {
+  width: 200px;
+  display: flex;
+  text-align: center;
+}
+
+.header {
+  background-color: aqua;
+}
