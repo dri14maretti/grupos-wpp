@@ -1,12 +1,13 @@
 .footer {
-  position: fixed;
-  bottom: 0;
+	position: fixed;
+	bottom: 0;
 
-  display: flex;
-  justify-content: flex-end;
-  background-color: #fff;
+	display: flex;
+	justify-content: flex-end;
+	background-color: #e5e4e2;
+	margin-top: 20px;
 }
 
 #developed-by {
-  width: 200px;
+	width: 150px;
 }

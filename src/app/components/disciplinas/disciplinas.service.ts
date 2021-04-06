@@ -6,14 +6,14 @@ import {
 	AngularFirestoreCollection,
 } from 'angularfire2/firestore';
 import { CollectionReference } from '@firebase/firestore-types';
-import { EMPTY } from 'rxjs';
 import * as firebase from 'firebase';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class DisciplinasService {
-	constructor(private db: AngularFirestore) {
+	constructor(private db: AngularFirestore, private snackBar: MatSnackBar) {
 		this.disciplinas = this.db.collection<Disciplina>(
 			'/disciplinas',
 			(ref: CollectionReference) => ref.orderBy('codigo', 'asc')
@@ -35,6 +35,15 @@ export class DisciplinasService {
 	arrayFiltrado: Disciplina[];
 
 	dataFinal$: Observable<Disciplina[]>;
+
+	showMessage(msg: string, isError: boolean = false) {
+		this.snackBar.open(msg, 'x', {
+			duration: 3000,
+			horizontalPosition: 'right',
+			verticalPosition: 'top',
+			panelClass: isError ? ['msg-error'] : ['msg-success'],
+		});
+	}
 
 	create(disciplina: Disciplina): Promise<void> {
 		const uid = this.db.createId();

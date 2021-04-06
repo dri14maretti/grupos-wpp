@@ -2,14 +2,16 @@
 	width: 100%;
 }
 
-.mat-elevation-z4 {
+.tabela {
 	margin-top: 20px;
 	margin-left: 10px;
 	margin-right: 10px;
+	overflow: scroll;
+	max-height: 590px;
 }
 
 #wpp-icon {
-	width: 30px;
+	width: 25px;
 }
 
 .content {
@@ -19,7 +21,7 @@
 
 .copy {
 	margin-left: 10px;
-	font-size: 30px;
+	font-size: 25px;
 	text-decoration: none;
 	color: #fff;
 }

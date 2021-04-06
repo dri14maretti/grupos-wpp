@@ -8,6 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/template/header/header.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { DisciplinasListaComponent } from './components/disciplinas/disciplinas-lista/disciplinas-lista.component';
+import { HomeComponent } from './views/home/home.component';
+import { AdminComponent } from './views/admin/admin.component';
+import { DisciplinasListaAdminComponent } from './components/disciplinas/disciplinas-lista-admin/disciplinas-lista-admin.component';
+import { DisciplinasDialogComponent } from './components/disciplinas/disciplinas-dialog/disciplinas-dialog.component';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -16,15 +20,14 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { HomeComponent } from './views/home/home.component';
-import { AdminComponent } from './views/admin/admin.component';
-import { DisciplinasListaAdminComponent } from './components/disciplinas/disciplinas-lista-admin/disciplinas-lista-admin.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
 	declarations: [
@@ -33,14 +36,16 @@ import { DisciplinasListaAdminComponent } from './components/disciplinas/discipl
 		FooterComponent,
 		HeaderComponent,
 		DisciplinasListaComponent,
-  HomeComponent,
-  AdminComponent,
-  DisciplinasListaAdminComponent,
+		HomeComponent,
+		AdminComponent,
+		DisciplinasListaAdminComponent,
+		DisciplinasDialogComponent,
 	],
 	imports: [
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		AngularFireModule.initializeApp(environment.firebase),
+		FormsModule,
 		AngularFirestoreModule,
 		MatToolbarModule,
 		MatDialogModule,
@@ -48,9 +53,10 @@ import { DisciplinasListaAdminComponent } from './components/disciplinas/discipl
 		MatPaginatorModule,
 		MatSortModule,
 		MatFormFieldModule,
-		FormsModule,
 		MatInputModule,
 		MatProgressSpinnerModule,
+		MatButtonModule,
+		MatSnackBarModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

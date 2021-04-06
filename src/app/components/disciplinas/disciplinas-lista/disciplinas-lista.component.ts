@@ -52,19 +52,9 @@ export class DisciplinasListaComponent implements OnInit {
 		selBox.select();
 		document.execCommand('copy');
 		document.body.removeChild(selBox);
+
+		this.disciplinasService.showMessage(
+			'Copiado para a área de transferência!'
+		);
 	}
-
-	// onPerformTask(task: Task): void {
-	// 	task.done = !task.done;
-	// 	this.taskService.update(task);
-	// }
-
-	// showDialog(task?: Task): void {
-	// 	const config: MatDialogConfig<any> = task ? { data: { task } } : {};
-	// 	this.dialog.open(TaskDialogComponent, config);
-	// }
-
-	// onDelete(task: Task): void {
-	// 	this.taskService.delete(task);
-	// }
 }

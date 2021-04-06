@@ -2,10 +2,12 @@
 	width: 100%;
 }
 
-.mat-elevation-z4 {
+.tabela {
 	margin-top: 20px;
 	margin-left: 10px;
 	margin-right: 10px;
+	overflow: scroll;
+	max-height: 75%;
 }
 
 #wpp-icon {
@@ -17,14 +19,27 @@
 	justify-content: center;
 }
 
-.copy {
-	margin-left: 10px;
-	font-size: 30px;
+.edit,
+.delete {
+	margin-right: 10px;
+	font-size: 20px;
 	text-decoration: none;
-	color: #fff;
+	cursor: pointer;
+	color: #e5e4e2;
 }
 
 .spinner {
 	margin: 30px auto 0 auto;
 	color: #3e4095;
+}
+
+.fab-bottom-left {
+	position: fixed !important;
+	left: 15px;
+	bottom: 15px;
+	background-color: #3e4095;
+}
+
+.add {
+	margin-top: 20px;
 }

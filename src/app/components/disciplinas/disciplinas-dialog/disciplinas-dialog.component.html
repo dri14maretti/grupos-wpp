@@ -1,0 +1,85 @@
+<h1 mat-dialog-title>{{ dialogTitle }}</h1>
+<mat-dialog-content class="dialog-content">
+	<mat-form-field class="form-field">
+		<input
+			type="text"
+			matInput
+			placeholder="Código"
+			[(ngModel)]="disciplina.codigo"
+			(keyup.enter)="onSave()"
+			required
+			minlength="6"
+			#codigoControl="ngModel"
+		/>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input
+			type="text"
+			matInput
+			placeholder="Disciplina"
+			[(ngModel)]="disciplina.nome"
+			(keyup.enter)="onSave()"
+			required
+			minlength="6"
+			#nomeControl="ngModel"
+		/>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input
+			type="text"
+			matInput
+			placeholder="Professor"
+			[(ngModel)]="disciplina.professor"
+			(keyup.enter)="onSave()"
+			required
+			minlength="6"
+			#professorControl="ngModel"
+		/>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input
+			type="number"
+			matInput
+			placeholder="Turma"
+			[(ngModel)]="disciplina.turma"
+			(keyup.enter)="onSave()"
+			required
+			#turmaControl="ngModel"
+		/>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input
+			type="text"
+			matInput
+			placeholder="Horário"
+			[(ngModel)]="disciplina.horario"
+			(keyup.enter)="onSave()"
+			required
+			minlength="3"
+			#horarioControl="ngModel"
+		/>
+	</mat-form-field>
+	<mat-form-field>
+		<input
+			type="text"
+			matInput
+			placeholder="Link"
+			[(ngModel)]="disciplina.link"
+			(keyup.enter)="onSave()"
+			required
+			minlength="3"
+			#linkControl="ngModel"
+		/>
+	</mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-content>
+	<button mat-button mat-dialog-close>Cancelar</button>
+	<button mat-button [disabled]="codigoControl.invalid" (click)="onSave()">
+		Salvar
+	</button>
+</mat-dialog-content>

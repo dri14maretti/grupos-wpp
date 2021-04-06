@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Disciplina } from 'src/app/models/disciplina.model';
+import { DisciplinasDialogComponent } from '../disciplinas-dialog/disciplinas-dialog.component';
 import { DisciplinasService } from '../disciplinas.service';
 
 @Component({
@@ -12,7 +16,7 @@ import { DisciplinasService } from '../disciplinas.service';
 })
 export class DisciplinasListaAdminComponent implements OnInit {
 	disciplinas$: Observable<Disciplina[]>;
-	displayedColumns = ['codigo', 'nome', 'prof', 'turma', 'horario', 'link'];
+	displayedColumns = ['codigo', 'nome', 'prof', 'turma', 'horario', 'edit'];
 	selectedDisciplina: Disciplina;
 	loading: boolean = true;
 
@@ -54,15 +58,23 @@ export class DisciplinasListaAdminComponent implements OnInit {
 		document.body.removeChild(selBox);
 	}
 
+	editDisciplina(): void {}
+
 	// onPerformTask(task: Task): void {
 	// 	task.done = !task.done;
 	// 	this.taskService.update(task);
 	// }
 
-	// showDialog(task?: Task): void {
-	// 	const config: MatDialogConfig<any> = task ? { data: { task } } : {};
-	// 	this.dialog.open(TaskDialogComponent, config);
-	// }
+	showDialog(disciplina?: Disciplina): void {
+		const config: MatDialogConfig<any> = disciplina
+			? { data: { disciplina } }
+			: {};
+		this.dialog.open(DisciplinasDialogComponent, config);
+	}
+
+	onDelete(disciplina: Disciplina): void {
+		this.disciplinasService.delete(disciplina);
+	}
 
 	// onDelete(task: Task): void {
 	// 	this.taskService.delete(task);

@@ -10,5 +10,32 @@
 }
 
 .search-form {
-	margin-left: 50px;
+	margin-left: 4rem;
+	font-size: 20px;
+}
+
+.search-input {
+	border: none;
+	padding: 0.5rem 2rem;
+	font-size: 1rem;
+	font-family: inherit;
+	text-align: center;
+	width: 5rem;
+	border-radius: 0.8rem;
+	margin-right: 5px;
+	color: grey;
+	border: 1px solid #fff;
+	transition: all 0.3s;
+}
+
+.title {
+	text-align: center;
+	margin-left: 15px;
+	font-family: inherit;
+}
+
+.material-search {
+	font-size: 25px;
+	text-align: center;
+	padding-top: 3px;
 }

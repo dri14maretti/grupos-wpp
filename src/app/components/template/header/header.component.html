@@ -1,17 +1,17 @@
 <mat-toolbar class="header mat-elevation-z4">
-  <img id="logo-toolbar" src="assets/img/EFEI_logo.png" />
-  <!-- Search form -->
-  <form class="search-form">
-    <mat-form-field>
-      <input
-        matInput
-        type="text"
-        placeholder="Procurar"
-        [(ngModel)]="procurarDisciplina"
-        name="procura"
-        (input)="searchThis()"
-      />
-      <span class="material-icons">search</span>
-    </mat-form-field>
-  </form>
+	<a routerLink=""><img id="logo-toolbar" src="assets/img/EFEI_logo.png" /></a>
+
+	<div class="title">Grupos das Matérias - semestre 2021.1</div>
+	<!-- Search form -->
+	<form class="search-form">
+		<input
+			class="search-input"
+			type="text"
+			placeholder="Procurar"
+			name="search"
+			[(ngModel)]="procurarDisciplina"
+			(input)="searchThis()"
+		/>
+	</form>
+	<span class="material-icons material-search">search</span>
 </mat-toolbar>

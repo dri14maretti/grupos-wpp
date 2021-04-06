@@ -1,0 +1,9 @@
+.form-field,
+.dialog-content {
+	display: flex;
+	flex-direction: column;
+}
+
+input {
+	color: #e5e4e2;
+}
