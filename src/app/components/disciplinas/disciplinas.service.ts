@@ -1,25 +1,40 @@
+import { Disciplina } from './../../models/disciplina.model';
+import { Observable, of, Subject } from 'rxjs';
 import { Injectable, OnInit } from '@angular/core';
-import { Disciplina } from 'src/app/modules/disciplina.model';
 import {
 	AngularFirestore,
 	AngularFirestoreCollection,
 } from 'angularfire2/firestore';
 import { CollectionReference } from '@firebase/firestore-types';
+import { EMPTY } from 'rxjs';
+import * as firebase from 'firebase';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class DisciplinasService {
-	procurarDisciplina: string = '';
-
 	constructor(private db: AngularFirestore) {
 		this.disciplinas = this.db.collection<Disciplina>(
 			'/disciplinas',
 			(ref: CollectionReference) => ref.orderBy('codigo', 'asc')
 		);
+
+		this.transformaDataDoFirebaseParaArray();
+
+		this.dataConvertidaParaArray = [];
+
+		this.dataFinal$ = new Subject<Array<Disciplina>>();
+
+		this.arrayFiltrado = [];
 	}
 
 	disciplinas: AngularFirestoreCollection<Disciplina>;
+
+	dataConvertidaParaArray: any[];
+
+	arrayFiltrado: Disciplina[];
+
+	dataFinal$: Observable<Disciplina[]>;
 
 	create(disciplina: Disciplina): Promise<void> {
 		const uid = this.db.createId();
@@ -46,8 +61,37 @@ export class DisciplinasService {
 			: this.disciplinas.doc<Disciplina>('').delete(); //Check se aquele uid do parametro existe, para que possa ser excluído direto de dentro do firebase
 	}
 
-	// ???????????
-	search(): void {
-		console.log(this.procurarDisciplina);
+	search(procurarDisciplina: string): void {
+		if (procurarDisciplina) {
+			this.arrayFiltrado = this.dataConvertidaParaArray.filter(
+				(disciplina: Disciplina) => {
+					if (
+						disciplina.codigo
+							.toLocaleLowerCase()
+							.includes(procurarDisciplina.toLocaleLowerCase()) ||
+						disciplina.nome
+							.toLocaleLowerCase()
+							.includes(procurarDisciplina.toLocaleLowerCase())
+					)
+						return disciplina;
+					else return;
+				}
+			);
+		} else this.arrayFiltrado = this.dataConvertidaParaArray;
+
+		console.log(this.arrayFiltrado);
+		this.dataFinal$ = of(this.arrayFiltrado);
+	}
+
+	transformaDataDoFirebaseParaArray(): void {
+		firebase
+			.firestore()
+			.collection('disciplinas')
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.docs.forEach((doc) => {
+					this.dataConvertidaParaArray.push(doc.data());
+				});
+			});
 	}
 }

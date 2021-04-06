@@ -1,16 +1,16 @@
-import { DisciplinasService } from './../disciplinas.service';
-import { Disciplina } from './../../../models/disciplina.model';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
+import { Disciplina } from 'src/app/models/disciplina.model';
+import { DisciplinasService } from '../disciplinas.service';
 
 @Component({
-	selector: 'app-disciplinas-lista',
-	templateUrl: './disciplinas-lista.component.html',
-	styleUrls: ['./disciplinas-lista.component.css'],
+	selector: 'app-disciplinas-lista-admin',
+	templateUrl: './disciplinas-lista-admin.component.html',
+	styleUrls: ['./disciplinas-lista-admin.component.css'],
 })
-export class DisciplinasListaComponent implements OnInit {
+export class DisciplinasListaAdminComponent implements OnInit {
 	disciplinas$: Observable<Disciplina[]>;
 	displayedColumns = ['codigo', 'nome', 'prof', 'turma', 'horario', 'link'];
 	selectedDisciplina: Disciplina;

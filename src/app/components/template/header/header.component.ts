@@ -1,6 +1,5 @@
 import { DisciplinasService } from './../../disciplinas/disciplinas.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
@@ -8,7 +7,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 	procurarDisciplina: string;
-	@Output() criterioBusca = new EventEmitter<String>();
 
 	constructor(private disciplinasService: DisciplinasService) {
 		this.procurarDisciplina = '';
@@ -18,7 +16,6 @@ export class HeaderComponent implements OnInit {
 
 	searchThis(): void {
 		// Serve para mandar a string que está sendo procurada a cada vez que ela é modificada para o disciplinas.service
-		this.disciplinasService.procurarDisciplina = this.procurarDisciplina;
-		console.log(this.disciplinasService.procurarDisciplina);
+		this.disciplinasService.search(this.procurarDisciplina);
 	}
 }
