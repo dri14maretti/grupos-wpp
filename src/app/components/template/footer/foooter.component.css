@@ -4,7 +4,7 @@
 
 	display: flex;
 	justify-content: flex-end;
-	background-color: #e5e4e2;
+	background-color: inherit;
 	margin-top: 20px;
 }
 

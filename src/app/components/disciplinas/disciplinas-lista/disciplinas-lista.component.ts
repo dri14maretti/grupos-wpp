@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
+import { AuthenticationDialogComponent } from '../authentication-dialog/authentication-dialog.component';
 
 @Component({
 	selector: 'app-disciplinas-lista',
@@ -56,5 +57,9 @@ export class DisciplinasListaComponent implements OnInit {
 		this.disciplinasService.showMessage(
 			'Copiado para a área de transferência!'
 		);
+	}
+
+	openAuthentication(): void {
+		this.dialog.open(AuthenticationDialogComponent);
 	}
 }

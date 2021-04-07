@@ -31,16 +31,24 @@
 
 .spinner {
 	margin: 30px auto 0 auto;
-	color: #3e4095;
+	color: #104d7f;
 }
 
 .fab-bottom-left {
 	position: fixed !important;
 	left: 15px;
 	bottom: 15px;
-	background-color: #3e4095;
+	background-color: #104d7f;
 }
 
 .add {
 	margin-top: 20px;
+}
+
+.delete:hover,
+.delete:focus,
+.edit:hover,
+.edit:focus {
+	box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+	transform: translateY(-0.2em);
 }

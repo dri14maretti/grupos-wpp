@@ -1,0 +1,12 @@
+.footer {
+	bottom: 0;
+
+	display: flex;
+	justify-content: flex-end;
+	background-color: inherit;
+	margin-top: 20px;
+}
+
+#developed-by {
+	width: 150px;
+}

@@ -28,6 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ConfirmationDialogComponent } from './components/disciplinas/confirmation-dialog/confirmation-dialog.component';
+import { AuthenticationDialogComponent } from './components/disciplinas/authentication-dialog/authentication-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -40,6 +42,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 		AdminComponent,
 		DisciplinasListaAdminComponent,
 		DisciplinasDialogComponent,
+		ConfirmationDialogComponent,
+		AuthenticationDialogComponent,
 	],
 	imports: [
 		AppRoutingModule,

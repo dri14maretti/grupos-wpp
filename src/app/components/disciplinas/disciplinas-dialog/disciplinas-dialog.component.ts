@@ -9,7 +9,8 @@ import { DisciplinasService } from '../disciplinas.service';
 	styleUrls: ['./disciplinas-dialog.component.css'],
 })
 export class DisciplinasDialogComponent implements OnInit {
-	dialogTitle: string = 'Nova Tarefa';
+	dialogTitle: string = 'Nova Disciplina';
+
 	disciplina: Disciplina = {
 		codigo: '',
 		nome: '',
@@ -19,19 +20,34 @@ export class DisciplinasDialogComponent implements OnInit {
 		horario: '',
 	};
 
-	focused = false;
+	check: boolean;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) private data: any,
 		private dialogRef: MatDialogRef<DisciplinasDialogComponent>,
 		private disciplinaService: DisciplinasService
-	) {}
+	) {
+		this.check = true;
+	}
 
 	ngOnInit(): void {
 		if (this.data) {
-			this.dialogTitle = 'Atualizar Tarefa';
+			this.dialogTitle = 'Atualizar Disciplina';
 			this.disciplina = this.data.disciplina;
 		}
+	}
+
+	checkFunc(): boolean {
+		if (
+			this.disciplina.codigo &&
+			this.disciplina.nome &&
+			this.disciplina.link &&
+			this.disciplina.professor &&
+			this.disciplina.turma &&
+			this.disciplina.horario
+		)
+			return false;
+		else return true;
 	}
 
 	onSave(): void {

@@ -1,3 +1,4 @@
+import { Login } from './../../models/login.model';
 import { Disciplina } from './../../models/disciplina.model';
 import { Observable, of, Subject } from 'rxjs';
 import { Injectable, OnInit } from '@angular/core';
@@ -19,14 +20,18 @@ export class DisciplinasService {
 			(ref: CollectionReference) => ref.orderBy('codigo', 'asc')
 		);
 
-		this.transformaDataDoFirebaseParaArray();
+		this.login = this.transformaDataDoFirebaseParaArray('login');
 
-		this.dataConvertidaParaArray = [];
+		this.dataConvertidaParaArray = this.transformaDataDoFirebaseParaArray(
+			'disciplinas'
+		);
 
 		this.dataFinal$ = new Subject<Array<Disciplina>>();
 
 		this.arrayFiltrado = [];
 	}
+
+	login: Login[];
 
 	disciplinas: AngularFirestoreCollection<Disciplina>;
 
@@ -35,6 +40,8 @@ export class DisciplinasService {
 	arrayFiltrado: Disciplina[];
 
 	dataFinal$: Observable<Disciplina[]>;
+
+	logged: boolean = false;
 
 	showMessage(msg: string, isError: boolean = false) {
 		this.snackBar.open(msg, 'x', {
@@ -50,7 +57,7 @@ export class DisciplinasService {
 		return this.disciplinas.doc<Disciplina>(uid).set({
 			uid,
 			nome: disciplina.nome,
-			codigo: disciplina.codigo,
+			codigo: disciplina.codigo.toUpperCase(),
 			link: disciplina.link,
 			professor: disciplina.professor,
 			turma: disciplina.turma,
@@ -70,15 +77,41 @@ export class DisciplinasService {
 			: this.disciplinas.doc<Disciplina>('').delete(); //Check se aquele uid do parametro existe, para que possa ser excluído direto de dentro do firebase
 	}
 
-	transformaDataDoFirebaseParaArray(): void {
+	search(procurarDisciplina: string): void {
+		if (procurarDisciplina) {
+			this.arrayFiltrado = this.dataConvertidaParaArray.filter(
+				(disciplina: Disciplina) => {
+					if (
+						disciplina.codigo
+							.toLocaleLowerCase()
+							.includes(procurarDisciplina.toLocaleLowerCase()) ||
+						disciplina.nome
+							.toLocaleLowerCase()
+							.includes(procurarDisciplina.toLocaleLowerCase())
+					)
+						return disciplina;
+					else return;
+				}
+			);
+		} else this.arrayFiltrado = this.dataConvertidaParaArray;
+
+		console.log(this.arrayFiltrado);
+		this.dataFinal$ = of(this.arrayFiltrado);
+	}
+
+	transformaDataDoFirebaseParaArray(path: string): any[] {
+		let dataConvertida: any[] = [];
+
 		firebase
 			.firestore()
-			.collection('disciplinas')
+			.collection(path)
 			.get()
 			.then((querySnapshot) => {
 				querySnapshot.docs.forEach((doc) => {
-					this.dataConvertidaParaArray.push(doc.data());
+					dataConvertida.push(doc.data());
 				});
 			});
+
+		return dataConvertida;
 	}
 }

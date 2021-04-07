@@ -30,3 +30,19 @@
 	margin: 30px auto 0 auto;
 	color: #3e4095;
 }
+
+.fab-bottom-left {
+	position: fixed;
+	left: 5px;
+	bottom: 5px;
+	cursor: pointer;
+	color: #424242;
+}
+
+#wpp-icon:hover,
+#wpp-icon:focus,
+.copy:hover,
+.copy:focus {
+	box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+	transform: translateY(-0.2em);
+}

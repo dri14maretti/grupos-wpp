@@ -1,0 +1,32 @@
+<p>Admin Mode</p>
+
+<mat-dialog-content class="dialog-content">
+	<mat-form-field class="form-field">
+		<input
+			type="text"
+			matInput
+			placeholder="User"
+			[(ngModel)]="login.user"
+			(keyup.enter)="authenticate()"
+			required
+		/>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input
+			type="password"
+			matInput
+			placeholder="Senha"
+			[(ngModel)]="login.senha"
+			(keyup.enter)="authenticate()"
+			required
+		/>
+	</mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-content>
+	<button mat-button mat-dialog-close>Cancelar</button>
+	<button mat-button [disabled]="checkFunc()" (click)="authenticate()">
+		Logar
+	</button>
+</mat-dialog-content>
