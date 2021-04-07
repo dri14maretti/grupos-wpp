@@ -1,10 +1,11 @@
 import { DisciplinasService } from './../disciplinas.service';
 import { Disciplina } from './../../../models/disciplina.model';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
 import { AuthenticationDialogComponent } from '../authentication-dialog/authentication-dialog.component';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
 	selector: 'app-disciplinas-lista',
@@ -12,7 +13,7 @@ import { AuthenticationDialogComponent } from '../authentication-dialog/authenti
 	styleUrls: ['./disciplinas-lista.component.css'],
 })
 export class DisciplinasListaComponent implements OnInit {
-	disciplinas$: Observable<Disciplina[]>;
+	disciplinasFiltradas$: Observable<Disciplina[]>;
 	displayedColumns = ['codigo', 'nome', 'prof', 'turma', 'horario', 'link'];
 	selectedDisciplina: Disciplina;
 	loading: boolean = true;
@@ -31,13 +32,14 @@ export class DisciplinasListaComponent implements OnInit {
 			horario: '',
 		};
 
-		this.disciplinas$ = this.disciplinasService.disciplinas.valueChanges();
+		this.disciplinasFiltradas$ = this.disciplinasService.disciplinasFiltradas$;
 	}
 
 	ngOnInit(): void {
-		this.disciplinas$ = this.disciplinasService.disciplinas.valueChanges();
-		this.disciplinas$.pipe(take(1)).subscribe(() => (this.loading = false));
-		console.log(this.disciplinas$);
+		this.disciplinasFiltradas$
+			.pipe(take(1))
+			.subscribe(() => (this.loading = false));
+		console.log(this.disciplinasFiltradas$);
 	}
 
 	// Copia a mensagem que está salva em disciplina.link para a clipboard do usuário

@@ -1,7 +1,7 @@
 import { Login } from './../../models/login.model';
 import { Disciplina } from './../../models/disciplina.model';
-import { Observable, of, Subject } from 'rxjs';
-import { Injectable, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 import {
 	AngularFirestore,
 	AngularFirestoreCollection,
@@ -14,6 +14,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 	providedIn: 'root',
 })
 export class DisciplinasService {
+	login: Login[];
+	disciplinas: AngularFirestoreCollection<Disciplina>;
+	disciplinas$: Observable<Disciplina[]>;
+	disciplinasFiltradas$: Observable<Disciplina[]>;
+	logged: boolean = false;
+
 	constructor(private db: AngularFirestore, private snackBar: MatSnackBar) {
 		this.disciplinas = this.db.collection<Disciplina>(
 			'/disciplinas',
@@ -22,26 +28,9 @@ export class DisciplinasService {
 
 		this.login = this.transformaDataDoFirebaseParaArray('login');
 
-		this.dataConvertidaParaArray = this.transformaDataDoFirebaseParaArray(
-			'disciplinas'
-		);
-
-		this.dataFinal$ = new Subject<Array<Disciplina>>();
-
-		this.arrayFiltrado = [];
+		this.disciplinas$ = this.disciplinas.valueChanges();
+		this.disciplinasFiltradas$ = this.disciplinas.valueChanges();
 	}
-
-	login: Login[];
-
-	disciplinas: AngularFirestoreCollection<Disciplina>;
-
-	dataConvertidaParaArray: any[];
-
-	arrayFiltrado: Disciplina[];
-
-	dataFinal$: Observable<Disciplina[]>;
-
-	logged: boolean = false;
 
 	showMessage(msg: string, isError: boolean = false) {
 		this.snackBar.open(msg, 'x', {
@@ -77,26 +66,12 @@ export class DisciplinasService {
 			: this.disciplinas.doc<Disciplina>('').delete(); //Check se aquele uid do parametro existe, para que possa ser excluído direto de dentro do firebase
 	}
 
-	search(procurarDisciplina: string): void {
-		if (procurarDisciplina) {
-			this.arrayFiltrado = this.dataConvertidaParaArray.filter(
-				(disciplina: Disciplina) => {
-					if (
-						disciplina.codigo
-							.toLocaleLowerCase()
-							.includes(procurarDisciplina.toLocaleLowerCase()) ||
-						disciplina.nome
-							.toLocaleLowerCase()
-							.includes(procurarDisciplina.toLocaleLowerCase())
-					)
-						return disciplina;
-					else return;
-				}
-			);
-		} else this.arrayFiltrado = this.dataConvertidaParaArray;
-
-		console.log(this.arrayFiltrado);
-		this.dataFinal$ = of(this.arrayFiltrado);
+	search(key: string): void {
+		this.disciplinasFiltradas$ = this.disciplinas$.map((disciplinaVet) =>
+			disciplinaVet.filter((disciplina) => disciplina.codigo.includes(key))
+		);
+		console.log('executado!');
+		console.log(this.disciplinasFiltradas$);
 	}
 
 	transformaDataDoFirebaseParaArray(path: string): any[] {

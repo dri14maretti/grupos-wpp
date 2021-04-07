@@ -1,5 +1,9 @@
 <div class="mat-elevation-z4 tabela">
-	<table mat-table class="full-width-table" [dataSource]="disciplinas$">
+	<table
+		mat-table
+		class="full-width-table"
+		[dataSource]="disciplinasFiltradas$"
+	>
 		<!-- Id Column -->
 		<ng-container matColumnDef="codigo">
 			<th mat-header-cell *matHeaderCellDef>Código</th>
