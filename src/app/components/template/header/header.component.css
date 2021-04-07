@@ -1,41 +1,43 @@
 #logo-toolbar {
-	width: 5rem;
-	display: flex;
+	width: 6rem;
 	text-align: center;
+	margin-bottom: 15px;
+	margin-top: 15px;
 }
 
 .header {
-	background-color: #3e4095;
-	height: 100px;
+	background-color: #104d7f;
+	text-align: center;
 }
 
 .search-form {
-	margin-left: 4rem;
 	font-size: 20px;
 }
 
 .search-input {
 	border: none;
-	padding: 0.5rem 2rem;
 	font-size: 1rem;
 	font-family: inherit;
 	text-align: center;
-	width: 5rem;
+	width: 8rem;
 	border-radius: 0.8rem;
-	margin-right: 5px;
 	color: grey;
 	border: 1px solid #fff;
 	transition: all 0.3s;
+	height: 2rem;
+	margin-bottom: 15px;
+	margin-left: 15px;
 }
 
 .title {
 	text-align: center;
-	margin-left: 15px;
 	font-family: inherit;
+	margin-bottom: 15px;
+	font-size: 50px;
 }
 
 .material-search {
-	font-size: 25px;
+	font-size: 20px;
 	text-align: center;
-	padding-top: 3px;
+	margin-left: 10px;
 }
