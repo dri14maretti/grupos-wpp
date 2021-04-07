@@ -70,28 +70,6 @@ export class DisciplinasService {
 			: this.disciplinas.doc<Disciplina>('').delete(); //Check se aquele uid do parametro existe, para que possa ser excluído direto de dentro do firebase
 	}
 
-	search(procurarDisciplina: string): void {
-		if (procurarDisciplina) {
-			this.arrayFiltrado = this.dataConvertidaParaArray.filter(
-				(disciplina: Disciplina) => {
-					if (
-						disciplina.codigo
-							.toLocaleLowerCase()
-							.includes(procurarDisciplina.toLocaleLowerCase()) ||
-						disciplina.nome
-							.toLocaleLowerCase()
-							.includes(procurarDisciplina.toLocaleLowerCase())
-					)
-						return disciplina;
-					else return;
-				}
-			);
-		} else this.arrayFiltrado = this.dataConvertidaParaArray;
-
-		console.log(this.arrayFiltrado);
-		this.dataFinal$ = of(this.arrayFiltrado);
-	}
-
 	transformaDataDoFirebaseParaArray(): void {
 		firebase
 			.firestore()
