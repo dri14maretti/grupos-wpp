@@ -16,7 +16,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class DisciplinasService {
 	login: Login[];
 	disciplinas: AngularFirestoreCollection<Disciplina>;
-	disciplinas$: Observable<Disciplina[]>;
 	disciplinasFiltradas$: Observable<Disciplina[]>;
 	logged: boolean = false;
 
@@ -28,7 +27,6 @@ export class DisciplinasService {
 
 		this.login = this.transformaDataDoFirebaseParaArray('login');
 
-		this.disciplinas$ = this.disciplinas.valueChanges();
 		this.disciplinasFiltradas$ = this.disciplinas.valueChanges();
 	}
 
@@ -67,11 +65,20 @@ export class DisciplinasService {
 	}
 
 	search(key: string): void {
-		this.disciplinasFiltradas$ = this.disciplinas$.map((disciplinaVet) =>
-			disciplinaVet.filter((disciplina) => disciplina.codigo.includes(key))
-		);
-		console.log('executado!');
-		console.log(this.disciplinasFiltradas$);
+		this.disciplinasFiltradas$ = this.disciplinas
+			.valueChanges()
+			.map((disciplinaVet) =>
+				disciplinaVet.filter(
+					(disciplina) =>
+						disciplina.codigo
+							.toLocaleLowerCase()
+							.includes(key.toLocaleLowerCase()) ||
+						disciplina.nome
+							.toLocaleLowerCase()
+							.includes(key.toLocaleLowerCase())
+				)
+			);
+		this.disciplinasFiltradas$.subscribe((val) => console.log(val));
 	}
 
 	transformaDataDoFirebaseParaArray(path: string): any[] {
