@@ -1,11 +1,10 @@
 import { DisciplinasService } from './../disciplinas.service';
 import { Disciplina } from './../../../models/disciplina.model';
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
 import { AuthenticationDialogComponent } from '../authentication-dialog/authentication-dialog.component';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
 	selector: 'app-disciplinas-lista',
@@ -39,7 +38,9 @@ export class DisciplinasListaComponent implements OnInit {
 		this.disciplinasFiltradas$
 			.pipe(take(1))
 			.subscribe(() => (this.loading = false));
-		console.log(this.disciplinasFiltradas$);
+		console.log(
+			this.disciplinasFiltradas$.subscribe((val) => console.log(val))
+		);
 	}
 
 	// Copia a mensagem que está salva em disciplina.link para a clipboard do usuário

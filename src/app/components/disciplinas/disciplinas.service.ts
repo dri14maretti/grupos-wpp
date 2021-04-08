@@ -1,7 +1,7 @@
 import { Login } from './../../models/login.model';
 import { Disciplina } from './../../models/disciplina.model';
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import {
 	AngularFirestore,
 	AngularFirestoreCollection,
@@ -9,15 +9,14 @@ import {
 import { CollectionReference } from '@firebase/firestore-types';
 import * as firebase from 'firebase';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 @Injectable({
 	providedIn: 'root',
 })
 export class DisciplinasService {
-	login: Login[];
 	disciplinas: AngularFirestoreCollection<Disciplina>;
 	disciplinas$: Observable<Disciplina[]>;
 	disciplinasFiltradas$: Observable<Disciplina[]>;
+	login: Login[];
 	logged: boolean = false;
 
 	constructor(private db: AngularFirestore, private snackBar: MatSnackBar) {

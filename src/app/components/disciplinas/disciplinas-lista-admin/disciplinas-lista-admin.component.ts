@@ -1,5 +1,5 @@
 import { AuthenticationDialogComponent } from '../authentication-dialog/authentication-dialog.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -17,7 +17,6 @@ import { Router } from '@angular/router';
 export class DisciplinasListaAdminComponent implements OnInit {
 	disciplinas$: Observable<Disciplina[]>;
 	displayedColumns = ['codigo', 'nome', 'prof', 'turma', 'horario', 'edit'];
-	selectedDisciplina: Disciplina;
 	loading: boolean = true;
 
 	constructor(
@@ -25,15 +24,6 @@ export class DisciplinasListaAdminComponent implements OnInit {
 		private router: Router,
 		private dialog: MatDialog
 	) {
-		this.selectedDisciplina = {
-			codigo: '',
-			nome: '',
-			link: '',
-			professor: '',
-			turma: 0,
-			horario: '',
-		};
-
 		this.disciplinas$ = this.disciplinasService.disciplinas.valueChanges();
 	}
 
@@ -63,11 +53,6 @@ export class DisciplinasListaAdminComponent implements OnInit {
 		document.body.removeChild(selBox);
 	}
 
-	// onPerformTask(task: Task): void {
-	// 	task.done = !task.done;
-	// 	this.taskService.update(task);
-	// }
-
 	showDialog(type: string, disciplina?: Disciplina): void {
 		const config: MatDialogConfig<any> = disciplina
 			? { data: { disciplina } }
@@ -77,8 +62,4 @@ export class DisciplinasListaAdminComponent implements OnInit {
 			? this.dialog.open(DisciplinasDialogComponent, config)
 			: this.dialog.open(ConfirmationDialogComponent, config);
 	}
-
-	// onDelete(task: Task): void {
-	// 	this.taskService.delete(task);
-	// }
 }
