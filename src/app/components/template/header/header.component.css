@@ -10,24 +10,6 @@
 	text-align: center;
 }
 
-.search-form {
-	font-size: 20px;
-}
-
-.search-input {
-	border: none;
-	font-size: 1rem;
-	font-family: inherit;
-	text-align: center;
-	width: 10rem;
-	border-radius: 0.8rem;
-	color: grey;
-	border: 1px solid #fff;
-	transition: all 0.3s;
-	height: 2rem;
-	margin-bottom: 15px;
-	margin-left: 32px;
-}
 
 .title {
 	text-align: center;

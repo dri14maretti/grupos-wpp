@@ -1,45 +1,51 @@
 import { DisciplinasService } from './../disciplinas.service';
 import { Disciplina } from './../../../models/disciplina.model';
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { map, startWith, take } from 'rxjs/operators';
 import { AuthenticationDialogComponent } from '../authentication-dialog/authentication-dialog.component';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-
+import { FormControl } from '@angular/forms';
 @Component({
 	selector: 'app-disciplinas-lista',
 	templateUrl: './disciplinas-lista.component.html',
 	styleUrls: ['./disciplinas-lista.component.css'],
 })
 export class DisciplinasListaComponent implements OnInit {
-	disciplinasFiltradas$: Observable<Disciplina[]>;
+	dadosFiltrados: Disciplina[] = [];
+	dadosFiltrados$!: Observable<Disciplina[]>;
+	dadosMostra: Disciplina[] = [];
+	dadosMostra$!: Observable<Disciplina[]>;
+
 	displayedColumns = ['codigo', 'nome', 'prof', 'turma', 'horario', 'link'];
-	selectedDisciplina: Disciplina;
+
 	loading: boolean = true;
+
+	myControl = new FormControl();
 
 	constructor(
 		private disciplinasService: DisciplinasService,
 
 		private dialog: MatDialog
-	) {
-		this.selectedDisciplina = {
-			codigo: '',
-			nome: '',
-			link: '',
-			professor: '',
-			turma: 0,
-			horario: '',
-		};
-
-		this.disciplinasFiltradas$ = this.disciplinasService.disciplinasFiltradas$;
-	}
+	) {}
 
 	ngOnInit(): void {
-		this.disciplinasFiltradas$
-			.pipe(take(1))
-			.subscribe(() => (this.loading = false));
-		console.log(this.disciplinasFiltradas$);
+		this.dadosMostra$ = this.disciplinasService.disciplinas.valueChanges();
+		this.dadosMostra$.subscribe((dados) => {
+			// Começa a parte de filtro por CPF
+			this.dadosMostra = dados;
+			this.dadosFiltrados = dados;
+		});
+
+		this.dadosMostra$.pipe(take(1)).subscribe(() => (this.loading = false));
+
+		this.dadosFiltrados$ = this.myControl.valueChanges.pipe(
+			startWith(''),
+			map((value) => this._filter(value))
+		);
+		this.dadosFiltrados$.subscribe((dadosFiltrados) => {
+			this.dadosFiltrados = dadosFiltrados;
+		});
 	}
 
 	// Copia a mensagem que está salva em disciplina.link para a clipboard do usuário
@@ -63,5 +69,25 @@ export class DisciplinasListaComponent implements OnInit {
 
 	openAuthentication(): void {
 		this.dialog.open(AuthenticationDialogComponent);
+	}
+
+	_filter(valorFiltro: string): Disciplina[] {
+		let returnArray: Disciplina[] = [];
+		if (this.loading) {
+			return this.dadosMostra;
+		}
+		if (valorFiltro === '') {
+			return this.dadosMostra;
+		}
+
+		if (this.dadosMostra != null) {
+			returnArray = this.dadosMostra.filter((value) => {
+				return (
+					value.codigo.toLowerCase().indexOf(valorFiltro.toLowerCase()) >= 0 ||
+					value.nome.toLowerCase().indexOf(valorFiltro.toLowerCase()) >= 0
+				);
+			});
+		}
+		return returnArray;
 	}
 }

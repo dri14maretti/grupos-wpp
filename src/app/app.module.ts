@@ -14,8 +14,9 @@ import { DisciplinasListaAdminComponent } from './components/disciplinas/discipl
 import { DisciplinasDialogComponent } from './components/disciplinas/disciplinas-dialog/disciplinas-dialog.component';
 
 import { AngularFireModule } from 'angularfire2';
-
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { ConfirmationDialogComponent } from './components/disciplinas/confirmation-dialog/confirmation-dialog.component';
+import { AuthenticationDialogComponent } from './components/disciplinas/authentication-dialog/authentication-dialog.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -28,8 +29,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ConfirmationDialogComponent } from './components/disciplinas/confirmation-dialog/confirmation-dialog.component';
-import { AuthenticationDialogComponent } from './components/disciplinas/authentication-dialog/authentication-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -61,6 +61,7 @@ import { AuthenticationDialogComponent } from './components/disciplinas/authenti
 		MatProgressSpinnerModule,
 		MatButtonModule,
 		MatSnackBarModule,
+		ReactiveFormsModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
