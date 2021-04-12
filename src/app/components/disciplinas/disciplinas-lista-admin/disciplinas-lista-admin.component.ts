@@ -2,12 +2,13 @@ import { AuthenticationDialogComponent } from '../authentication-dialog/authenti
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { map, startWith, take } from 'rxjs/operators';
 import { Disciplina } from 'src/app/models/disciplina.model';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { DisciplinasDialogComponent } from '../disciplinas-dialog/disciplinas-dialog.component';
 import { DisciplinasService } from '../disciplinas.service';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'app-disciplinas-lista-admin',
@@ -15,32 +16,39 @@ import { Router } from '@angular/router';
 	styleUrls: ['./disciplinas-lista-admin.component.css'],
 })
 export class DisciplinasListaAdminComponent implements OnInit {
-	disciplinas$: Observable<Disciplina[]>;
 	displayedColumns = ['codigo', 'nome', 'prof', 'turma', 'horario', 'edit'];
-	selectedDisciplina: Disciplina;
+
+	dadosFiltrados: Disciplina[] = [];
+	dadosFiltrados$!: Observable<Disciplina[]>;
+	dadosMostra: Disciplina[] = [];
+	dadosMostra$!: Observable<Disciplina[]>;
+
 	loading: boolean = true;
 
+	myControl = new FormControl();
 	constructor(
 		private disciplinasService: DisciplinasService,
 		private router: Router,
 		private dialog: MatDialog
-	) {
-		this.selectedDisciplina = {
-			codigo: '',
-			nome: '',
-			link: '',
-			professor: '',
-			turma: 0,
-			horario: '',
-		};
-
-		this.disciplinas$ = this.disciplinasService.disciplinas.valueChanges();
-	}
+	) {}
 
 	ngOnInit(): void {
-		this.disciplinas$ = this.disciplinasService.disciplinas.valueChanges();
-		this.disciplinas$.pipe(take(1)).subscribe(() => (this.loading = false));
-		console.log(this.disciplinas$);
+		this.dadosMostra$ = this.disciplinasService.disciplinas.valueChanges();
+		this.dadosMostra$.subscribe((dados) => {
+			// Começa a parte de filtro por CPF
+			this.dadosMostra = dados;
+			this.dadosFiltrados = dados;
+		});
+
+		this.dadosMostra$.pipe(take(1)).subscribe(() => (this.loading = false));
+
+		this.dadosFiltrados$ = this.myControl.valueChanges.pipe(
+			startWith(''),
+			map((value) => this._filter(value))
+		);
+		this.dadosFiltrados$.subscribe((dadosFiltrados) => {
+			this.dadosFiltrados = dadosFiltrados;
+		});
 
 		if (!this.disciplinasService.logged) {
 			this.router.navigate(['']);
@@ -63,11 +71,6 @@ export class DisciplinasListaAdminComponent implements OnInit {
 		document.body.removeChild(selBox);
 	}
 
-	// onPerformTask(task: Task): void {
-	// 	task.done = !task.done;
-	// 	this.taskService.update(task);
-	// }
-
 	showDialog(type: string, disciplina?: Disciplina): void {
 		const config: MatDialogConfig<any> = disciplina
 			? { data: { disciplina } }
@@ -78,7 +81,23 @@ export class DisciplinasListaAdminComponent implements OnInit {
 			: this.dialog.open(ConfirmationDialogComponent, config);
 	}
 
-	// onDelete(task: Task): void {
-	// 	this.taskService.delete(task);
-	// }
+	_filter(valorFiltro: string): Disciplina[] {
+		let returnArray: Disciplina[] = [];
+		if (this.loading) {
+			return this.dadosMostra;
+		}
+		if (valorFiltro === '') {
+			return this.dadosMostra;
+		}
+
+		if (this.dadosMostra != null) {
+			returnArray = this.dadosMostra.filter((value) => {
+				return (
+					value.codigo.toLowerCase().indexOf(valorFiltro.toLowerCase()) >= 0 ||
+					value.nome.toLowerCase().indexOf(valorFiltro.toLowerCase()) >= 0
+				);
+			});
+		}
+		return returnArray;
+	}
 }

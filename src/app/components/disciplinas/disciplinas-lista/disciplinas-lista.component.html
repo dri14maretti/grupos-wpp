@@ -56,9 +56,12 @@
 			<th mat-header-cell *matHeaderCellDef>Entrar</th>
 			<td mat-cell *matCellDef="let disciplina" class="content">
 				<a [href]="disciplina.link"
-					><img id="wpp-icon" src="assets/img/WhatsApp-Logo.png" /></a
+					><img
+						id="wpp-icon"
+						class="btn-animation"
+						src="assets/img/WhatsApp-Logo.png" /></a
 				><a
-					class="material-icons copy"
+					class="material-icons copy btn-animation"
 					(click)="copyMessage(disciplina.link)"
 					value="Click to copy"
 					routerLink=""

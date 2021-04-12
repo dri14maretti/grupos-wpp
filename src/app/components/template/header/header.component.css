@@ -10,16 +10,9 @@
 	text-align: center;
 }
 
-
 .title {
 	text-align: center;
 	font-family: inherit;
 	margin-bottom: 15px;
 	font-size: 50px;
-}
-
-.material-search {
-	font-size: 20px;
-	text-align: center;
-	margin-left: 10px;
 }

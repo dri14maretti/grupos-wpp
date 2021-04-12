@@ -13,9 +13,4 @@ export class HeaderComponent implements OnInit {
 	}
 
 	ngOnInit(): void {}
-
-	searchThis(): void {
-		// Serve para mandar a string que está sendo procurada a cada vez que ela é modificada para o disciplinas.service
-		this.disciplinasService.search(this.procurarDisciplina);
-	}
 }
