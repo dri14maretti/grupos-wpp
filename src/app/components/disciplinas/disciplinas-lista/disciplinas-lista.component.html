@@ -51,15 +51,23 @@
 		</ng-container>
 
 		<!-- Link Column -->
-		<ng-container matColumnDef="link">
+		<ng-container matColumnDef="entrarLink">
 			<th mat-header-cell *matHeaderCellDef>Entrar</th>
 			<td mat-cell *matCellDef="let disciplina" class="content">
 				<a [href]="disciplina.link"
 					><img
 						id="wpp-icon"
 						class="btn-animation"
-						src="assets/img/WhatsApp-Logo.png" /></a
-				><a
+						src="assets/img/WhatsApp-Logo.png"
+				/></a>
+			</td>
+		</ng-container>
+		<!-- Link Column -->
+
+		<ng-container matColumnDef="copiarLink">
+			<th mat-header-cell *matHeaderCellDef>Copiar</th>
+			<td mat-cell *matCellDef="let disciplina" class="content">
+				<a
 					class="material-icons copy btn-animation"
 					(click)="copyMessage(disciplina.link)"
 					value="Click to copy"

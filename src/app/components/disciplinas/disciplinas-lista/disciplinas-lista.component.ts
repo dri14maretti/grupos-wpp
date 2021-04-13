@@ -17,7 +17,15 @@ export class DisciplinasListaComponent implements OnInit {
 	dadosMostra: Disciplina[] = [];
 	dadosMostra$!: Observable<Disciplina[]>;
 
-	displayedColumns = ['codigo', 'nome', 'turma', 'prof', 'horario', 'link'];
+	displayedColumns = [
+		'codigo',
+		'nome',
+		'turma',
+		'prof',
+		'horario',
+		'entrarLink',
+		'copiarLink',
+	];
 
 	loading: boolean = true;
 
