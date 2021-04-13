@@ -19,8 +19,8 @@ export class DisciplinasListaComponent implements OnInit {
 
 	displayedColumns = [
 		'codigo',
-		'nome',
 		'turma',
+		'nome',
 		'prof',
 		'horario',
 		'entrarLink',

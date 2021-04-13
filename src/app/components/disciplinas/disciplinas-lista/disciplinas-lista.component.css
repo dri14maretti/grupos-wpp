@@ -1,11 +1,11 @@
 .full-width-table {
 	width: 100%;
+	min-width: 1200px;
 }
 
 .tabela {
 	margin-top: 20px;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-bottom: 10px;
 	overflow: scroll;
 	max-height: 590px;
 }
@@ -21,8 +21,9 @@
 
 .copy {
 	font-size: 25px;
+	margin-top: 4px;
 	text-decoration: none;
-	color: #fff;
+	color: #424242;
 }
 
 .spinner {
@@ -31,7 +32,7 @@
 }
 
 .fab-bottom-left {
-	position: fixed;
+	position: flex-end;
 	left: 10px;
 	bottom: 5px;
 	cursor: pointer;

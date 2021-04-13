@@ -2,15 +2,18 @@
 	<input
 		class="search-input"
 		type="text"
-		placeholder="Procurar"
+		placeholder="Procurar por código ou nome da disciplina"
 		name="search"
 		[formControl]="myControl"
 	/>
-	<span class="material-icons material-search">search</span>
 </form>
 
-<div class="mat-elevation-z4 tabela">
-	<table mat-table class="full-width-table" [dataSource]="dadosFiltrados">
+<div class="mat-elevation-z4 tabela container-fluid">
+	<table
+		class="table-striped full-width-table"
+		mat-table
+		[dataSource]="dadosFiltrados"
+	>
 		<!-- Id Column -->
 		<ng-container matColumnDef="codigo">
 			<th mat-header-cell *matHeaderCellDef>Código</th>
@@ -19,18 +22,19 @@
 			</td>
 		</ng-container>
 
-		<!-- Name Column -->
-		<ng-container matColumnDef="nome">
-			<th mat-header-cell *matHeaderCellDef>Disciplina</th>
-			<td mat-cell *matCellDef="let disciplina" class="content">
-				{{ disciplina.nome }}
-			</td>
-		</ng-container>
 		<!-- turma Column -->
 		<ng-container matColumnDef="turma">
 			<th mat-header-cell *matHeaderCellDef>Turma</th>
 			<td mat-cell *matCellDef="let disciplina" class="content">
 				<span *ngIf="disciplina.turma < 10">0</span>{{ disciplina.turma }}
+			</td>
+		</ng-container>
+
+		<!-- Name Column -->
+		<ng-container matColumnDef="nome">
+			<th mat-header-cell *matHeaderCellDef>Disciplina</th>
+			<td mat-cell *matCellDef="let disciplina" class="content">
+				{{ disciplina.nome }}
 			</td>
 		</ng-container>
 
