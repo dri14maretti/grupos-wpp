@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+/*#302f2d #121212*/
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 html,
@@ -9,7 +10,7 @@ body {
 body {
 	margin: 0;
 	font-family: 'DM Sans', sans-serif;
-	color: #e5e4e2;
+	color: #000;
 }
 
 .v-middle {

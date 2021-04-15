@@ -1,5 +1,6 @@
 .full-width-table {
 	width: 100%;
+	min-width: 1200px;
 }
 
 .tabela {
@@ -26,7 +27,7 @@
 	font-size: 20px;
 	text-decoration: none;
 	cursor: pointer;
-	color: #e5e4e2;
+	color: #424242;
 }
 
 .spinner {
@@ -41,8 +42,9 @@
 	background-color: #104d7f;
 }
 
-.add {
-	margin-top: 20px;
+.fab-bottom-left a {
+	color: #e5e4e2;
+	text-decoration: none;
 }
 
 .delete:hover,

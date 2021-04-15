@@ -1,6 +1,7 @@
 .full-width-table {
 	width: 100%;
 	min-width: 1200px;
+	margin: 0;
 }
 
 .tabela {
@@ -42,4 +43,10 @@
 
 .material-search {
 	color: #424242;
+}
+
+@media (max-width: 576px) {
+	.fab-bottom-left {
+		font-size: 20px;
+	}
 }

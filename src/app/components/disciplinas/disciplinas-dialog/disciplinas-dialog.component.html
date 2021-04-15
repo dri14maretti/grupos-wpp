@@ -78,7 +78,16 @@
 	</mat-form-field>
 </mat-dialog-content>
 
-<mat-dialog-content>
-	<button mat-button mat-dialog-close>Cancelar</button>
-	<button mat-button [disabled]="checkFunc()" (click)="onSave()">Salvar</button>
-</mat-dialog-content>
+<div class="container">
+	<mat-dialog-content>
+		<button mat-button mat-dialog-close>Cancelar</button>
+		<button
+			mat-button
+			[disabled]="checkFunc()"
+			(click)="onSave()"
+			class="btn btn-primary"
+		>
+			Salvar
+		</button>
+	</mat-dialog-content>
+</div>

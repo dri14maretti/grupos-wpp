@@ -24,9 +24,16 @@
 	</mat-form-field>
 </mat-dialog-content>
 
-<mat-dialog-content>
-	<button mat-button mat-dialog-close>Cancelar</button>
-	<button mat-button [disabled]="checkFunc()" (click)="authenticate()">
-		Logar
-	</button>
-</mat-dialog-content>
+<div class="container">
+	<mat-dialog-content>
+		<button mat-button mat-dialog-close>Cancelar</button>
+		<button
+			mat-button
+			[disabled]="checkFunc()"
+			(click)="authenticate()"
+			class="btn btn-primary"
+		>
+			Logar
+		</button>
+	</mat-dialog-content>
+</div>
