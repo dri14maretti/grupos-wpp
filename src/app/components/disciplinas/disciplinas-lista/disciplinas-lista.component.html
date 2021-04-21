@@ -26,7 +26,7 @@
 		<ng-container matColumnDef="turma">
 			<th mat-header-cell *matHeaderCellDef>Turma</th>
 			<td mat-cell *matCellDef="let disciplina" class="content">
-				<span *ngIf="disciplina.turma < 10">0</span>{{ disciplina.turma }}
+				T<span *ngIf="disciplina.turma < 10">0</span>{{ disciplina.turma }}
 			</td>
 		</ng-container>
 

@@ -54,3 +54,17 @@
 	box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
 	transform: translateY(-0.2em);
 }
+
+@media (max-width: 576px) {
+	.fab-bottom-left {
+		font-size: 20px;
+	}
+
+	.rodape {
+		font-size: 8px;
+	}
+
+	.content {
+		font-size: 12px;
+	}
+}

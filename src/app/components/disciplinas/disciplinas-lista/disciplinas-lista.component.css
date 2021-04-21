@@ -1,6 +1,6 @@
 .full-width-table {
 	width: 100%;
-	min-width: 1200px;
+	min-width: 1000px;
 	margin: 0;
 }
 
@@ -57,5 +57,9 @@
 
 	.rodape {
 		font-size: 8px;
+	}
+
+	.content {
+		font-size: 12px;
 	}
 }

@@ -1,12 +1,12 @@
 export const environment = {
-  production: true,
-  firebase: {
-    apiKey: "AIzaSyClAbsCTD-bsjDw_bcDALA5wnxaXXJXD_I",
-    authDomain: "grupos-wpp.firebaseapp.com",
-    projectId: "grupos-wpp",
-    storageBucket: "grupos-wpp.appspot.com",
-    messagingSenderId: "789107488032",
-    appId: "1:789107488032:web:8896f05cc556e382065345",
-    measurementId: "G-E7D6KS28VM",
-  },
+	production: true,
+	firebase: {
+		apiKey: 'AIzaSyD3AbSbcVKc9y0UptIpYMQrUpmdTyqZvM0',
+		authDomain: 'grupos-wpp-prod.firebaseapp.com',
+		projectId: 'grupos-wpp-prod',
+		storageBucket: 'grupos-wpp-prod.appspot.com',
+		messagingSenderId: '364173871958',
+		appId: '1:364173871958:web:1663634f24bc0e5ff464f7',
+		measurementId: 'G-PPSMRS1NVV',
+	},
 };
