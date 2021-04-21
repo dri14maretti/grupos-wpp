@@ -8,5 +8,19 @@
 }
 
 #developed-by {
-	width: 150px;
+	width: 60px;
+}
+
+#caero-logo {
+	width: 90px;
+	margin-bottom: 10px;
+}
+@media (max-width: 576px) {
+	#developed-by {
+		width: 40px;
+	}
+
+	#caero-logo {
+		width: 70px;
+	}
 }

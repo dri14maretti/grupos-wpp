@@ -45,8 +45,17 @@
 	color: #424242;
 }
 
+.rodape {
+	font-size: 10px;
+	margin-left: 10px;
+}
+
 @media (max-width: 576px) {
 	.fab-bottom-left {
 		font-size: 20px;
+	}
+
+	.rodape {
+		font-size: 8px;
 	}
 }
