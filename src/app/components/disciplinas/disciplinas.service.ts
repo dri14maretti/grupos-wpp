@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import {
 	AngularFirestore,
 	AngularFirestoreCollection,
-} from 'angularfire2/firestore';
+} from '@angular/fire/firestore';
 import { CollectionReference } from '@firebase/firestore-types';
 import * as firebase from 'firebase';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -64,22 +64,22 @@ export class DisciplinasService {
 			: this.disciplinas.doc<Disciplina>('').delete(); //Check se aquele uid do parametro existe, para que possa ser excluído direto de dentro do firebase
 	}
 
-	search(key: string): void {
-		this.disciplinasFiltradas$ = this.disciplinas
-			.valueChanges()
-			.map((disciplinaVet) =>
-				disciplinaVet.filter(
-					(disciplina) =>
-						disciplina.codigo
-							.toLocaleLowerCase()
-							.includes(key.toLocaleLowerCase()) ||
-						disciplina.nome
-							.toLocaleLowerCase()
-							.includes(key.toLocaleLowerCase())
-				)
-			);
-		this.disciplinasFiltradas$.subscribe((val) => console.log(val));
-	}
+	// search(key: string): void {
+	// 	this.disciplinasFiltradas$ = this.disciplinas
+	// 		.valueChanges()
+	// 		.map((disciplinaVet) =>
+	// 			disciplinaVet.filter(
+	// 				(disciplina) =>
+	// 					disciplina.codigo
+	// 						.toLocaleLowerCase()
+	// 						.includes(key.toLocaleLowerCase()) ||
+	// 					disciplina.nome
+	// 						.toLocaleLowerCase()
+	// 						.includes(key.toLocaleLowerCase())
+	// 			)
+	// 		);
+	// 	this.disciplinasFiltradas$.subscribe((val) => console.log(val));
+	// }
 
 	transformaDataDoFirebaseParaArray(path: string): any[] {
 		let dataConvertida: any[] = [];

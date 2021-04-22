@@ -1,3 +1,4 @@
+import { DisciplinasService } from './components/disciplinas/disciplinas.service';
 import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 
@@ -13,8 +14,8 @@ import { AdminComponent } from './views/admin/admin.component';
 import { DisciplinasListaAdminComponent } from './components/disciplinas/disciplinas-lista-admin/disciplinas-lista-admin.component';
 import { DisciplinasDialogComponent } from './components/disciplinas/disciplinas-dialog/disciplinas-dialog.component';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ConfirmationDialogComponent } from './components/disciplinas/confirmation-dialog/confirmation-dialog.component';
 import { AuthenticationDialogComponent } from './components/disciplinas/authentication-dialog/authentication-dialog.component';
 
@@ -63,9 +64,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 		MatButtonModule,
 		MatSnackBarModule,
 		ReactiveFormsModule,
-  NgbModule,
+		NgbModule,
 	],
-	providers: [],
+	providers: [DisciplinasService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

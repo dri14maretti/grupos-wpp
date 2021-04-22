@@ -40,7 +40,6 @@ export class DisciplinasListaComponent implements OnInit {
 	ngOnInit(): void {
 		this.dadosMostra$ = this.disciplinasService.disciplinas.valueChanges();
 		this.dadosMostra$.subscribe((dados) => {
-			// Começa a parte de filtro por CPF
 			this.dadosMostra = dados;
 			this.dadosFiltrados = dados;
 		});
