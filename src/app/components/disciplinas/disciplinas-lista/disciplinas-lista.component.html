@@ -58,7 +58,7 @@
 		<ng-container matColumnDef="entrarLink">
 			<th mat-header-cell *matHeaderCellDef>Entrar</th>
 			<td mat-cell *matCellDef="let disciplina" class="content">
-				<a [href]="disciplina.link"
+				<a [href]="disciplina.link" target="_blank"
 					><img
 						id="wpp-icon"
 						class="btn-animation"
@@ -88,9 +88,14 @@
 </div>
 
 <p class="rodape">
+	Caso deseje adicionar alguma matéria ao site, favor cadastrá-la a partir
+	<a href="https://forms.gle/pdakvj1XaBZcUUiU9" target="_blank">deste</a> link
+</p>
+
+<p class="rodape">
 	* A Asimov presa pela integração dos alunos disponibilizando um canal para
-	eles se reunirem. Não mantemos nenhum controle sobre o conteúdo dos grupos.
-	Este é de responsabilidade dos administradores
+	eles se reunirem. Não mantemos nenhum controle sobre o conteúdo dos grupos,
+	este é de responsabilidade dos administradores
 </p>
 
 <a (click)="openAuthentication()" class="material-icons fab-bottom-left">
