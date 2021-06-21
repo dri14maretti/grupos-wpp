@@ -1,7 +1,7 @@
 import { Login } from './../../models/login.model';
 import { Disciplina } from './../../models/disciplina.model';
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, Query } from '@angular/core';
 import {
 	AngularFirestore,
 	AngularFirestoreCollection,
@@ -25,7 +25,12 @@ export class DisciplinasService {
 			(ref: CollectionReference) => ref.orderBy('codigo', 'asc')
 		);
 
-		this.login = this.transformaDataDoFirebaseParaArray('login');
+		this.login = [
+			{
+				user: 'asimov-admin',
+				senha: 'asitime2021',
+			},
+		];
 
 		this.disciplinasFiltradas$ = this.disciplinas.valueChanges();
 	}
